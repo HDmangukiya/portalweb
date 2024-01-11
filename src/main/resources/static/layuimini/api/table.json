@@ -1,0 +1,127 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 1000,
+  "data": [
+    {
+      "id": 10000,
+      "username": "user-0",
+      "sex": "Woman",
+      "city": "City-0",
+      "sign": "Signature-0",
+      "experience": 255,
+      "logins": 24,
+      "wealth": 82830700,
+      "classify": "Writer",
+      "score": 57
+    },
+    {
+      "id": 10001,
+      "username": "user-1",
+      "sex": "Man",
+      "city": "City-1",
+      "sign": "Signature-1",
+      "experience": 884,
+      "logins": 58,
+      "wealth": 64928690,
+      "classify": "Poet",
+      "score": 27
+    },
+    {
+      "id": 10002,
+      "username": "user-2",
+      "sex": "Woman",
+      "city": "City-2",
+      "sign": "Signature-2",
+      "experience": 650,
+      "logins": 77,
+      "wealth": 6298078,
+      "classify": "SoySauce",
+      "score": 31
+    },
+    {
+      "id": 10003,
+      "username": "user-3",
+      "sex": "Woman",
+      "city": "City-3",
+      "sign": "Signature-3",
+      "experience": 362,
+      "logins": 157,
+      "wealth": 37117017,
+      "classify": "Poet",
+      "score": 68
+    },
+    {
+      "id": 10004,
+      "username": "user-4",
+      "sex": "Man",
+      "city": "City-4",
+      "sign": "Signature-4",
+      "experience": 807,
+      "logins": 51,
+      "wealth": 76263262,
+      "classify": "Writer",
+      "score": 6
+    },
+    {
+      "id": 10005,
+      "username": "user-5",
+      "sex": "Woman",
+      "city": "City-5",
+      "sign": "Signature-5",
+      "experience": 173,
+      "logins": 68,
+      "wealth": 60344147,
+      "classify": "Writer",
+      "score": 87
+    },
+    {
+      "id": 10006,
+      "username": "user-6",
+      "sex": "Woman",
+      "city": "City-6",
+      "sign": "Signature-6",
+      "experience": 982,
+      "logins": 37,
+      "wealth": 57768166,
+      "classify": "Writer",
+      "score": 34
+    },
+    {
+      "id": 10007,
+      "username": "user-7",
+      "sex": "Man",
+      "city": "City-7",
+      "sign": "Signature-7",
+      "experience": 727,
+      "logins": 150,
+      "wealth": 82030578,
+      "classify": "Writer",
+      "score": 28
+    },
+    {
+      "id": 10008,
+      "username": "user-8",
+      "sex": "Man",
+      "city": "City-8",
+      "sign": "Signature-8",
+      "experience": 951,
+      "logins": 133,
+      "wealth": 16503371,
+      "classify": "Poet",
+      "score": 14
+    },
+    {
+      "id": 10009,
+      "username": "user-9",
+      "sex": "Woman",
+      "city": "City-9",
+      "sign": "Signature-9",
+      "experience": 484,
+      "logins": 25,
+      "wealth": 86801934,
+      "classify": "Poet",
+      "score": 75
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Visionary</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link th:include="common :: common_head">
+   </head>
+   <body>
+      <!-- header section start -->
+      <div class="header_section">
+         <div class="header_main">
+            <div class="mobile_menu">
+
+               <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!--                  <div class="logo_mobile"><a href="index.html"><img src="images/logo.png"></a></div>-->
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+
+                  <div class="collapse navbar-collapse" id="navbarNav">
+
+                     <ul class="navbar-nav">
+                        <li class="nav-item">
+                           <a class="nav-link" th:href="@{/home}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" th:href="@{/services}">Products</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link " th:href="@{/solution}">Solution</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link " th:href="@{/blog}">PatentHonors</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" th:href="@{/successful}">Accomplishments</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" th:href="@{/about}">AboutUs</a>
+                        </li>
+
+                        <!-- <li class="nav-item">
+                           <a class="nav-link " href="contact.html">Contact</a>
+                        </li> -->
+                     </ul>
+                  </div>
+               </nav>
+            </div>
+            <div class="container-fluid">
+               
+<!--                <div class="logo"><a th:href="@{/index}"><img src="images/logo.jpg"></a></div>-->
+               <div class="menu_main">
+
+                  <ul>
+                     <li class="nav-item">
+                        <a class="nav-link" th:href="@{/home}">Home</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" th:href="@{/services}">Products</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link " th:href="@{/solution}">Solution</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link " th:href="@{/blog}">PatentHonors</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" th:href="@{/successful}">Accomplishments</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" th:href="@{/about}">AboutUs</a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <!-- banner section start -->
+         <div class="banner_section layout_padding">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+               <div class="carousel-inner">
+                  <div class="carousel-item active">
+                     <div class="container">
+                        <h1 class="banner_taital">Visionary</h1>
+                        <p class="banner_text">Seamless Solutions, Elevated Experiences: Your Software, Our Expertise</p>
+                        <div class="read_bt"><a class="aboutus" href="">AboutUs</a></div>
+                     </div>
+                  </div>
+                  <div class="carousel-item">
+                     <div class="container">
+                        <h1 class="banner_taital">Visionary</h1>
+                        <p class="banner_text">Seamless Solutions, Elevated Experiences: Your Software, Our Expertise</p>
+                        <div class="read_bt"><a class="aboutus" href="">AboutUs</a></div>
+                     </div>
+                  </div>
+                  <div class="carousel-item">
+                     <div class="container">
+                        <h1 class="banner_taital">Visionary</h1>
+                        <p class="banner_text">Seamless Solutions, Elevated Experiences: Your Software, Our Expertise</p>
+                        <div class="read_bt"><a href="" class="aboutus">AboutUs</a></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- banner section end -->
+      </div>
+      <!-- header section end -->
+      <!-- services section start -->
+      <div class="services_section layout_padding">
+         <div class="container">
+            <h1 class="services_taital">Products </h1>
+            <p class="services_text">API Testing</p>
+            <div class="services_section_2">
+               <div class="row">
+                  <div class="col-md-4" th:each="cp,item :${session.cp}">
+                     <div><img style="width: 400px;height: 400px" th:src="@{${cp.product_image}}" class="services_img"></div>
+                     <div class="btn_main"><a th:href="@{/services}">ProductDetails</a></div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+
+
+      <div>
+         <div class="container">
+            <h1 class="services_taital">IntroductionToPatents </h1>
+            <p class="services_text">TheCompanyAppliesForNationalPatents</p>
+
+ <div class="about_section ">
+         <div class="container-fluid">
+            <div class="row" th:each="zl,item :${session.zl}">
+               <div class="col-md-6">
+                  <div>
+                     <h1 class="about_taital" th:text="${zl.patents_name}"></h1>
+                     <p class="about_text" th:text="${zl.patents_brief}">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All </p>
+                     <div class="readmore_bt"><a th:href="@{/blog}">PatentDetails</a></div>
+                  </div>
+               </div>
+               <div class="col-md-6 padding_right_0">
+                  <div><img style="width: 670px;height: 370px" th:src="@{${zl.patents_image}}" class="about_img"></div>
+               </div>
+               &nbsp;&nbsp;&nbsp;
+            </div>
+         </div>
+      </div>
+
+            </div>
+      </div>
+     
+      <div class="client_section ">
+         <div class="container">
+            <h1 class="client_taital">Carousel</h1>
+            <div class="client_section_2">
+               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                  <ol class="carousel-indicators">
+
+                     <li th:each="intro,item :${session.company_list}" th:attr="data-slide-to=${item.index}" data-target="#carouselExampleIndicators" class=""th:classappend="${item.index==0} ? 'active' : ''"></li>
+                  </ol>
+                  <div class="carousel-inner" >
+                     <div th:each="intros,items :${session.company_list}" class="carousel-item "th:classappend="${items.index==0}?'active':''">
+                        <div  class="client_main">
+                           <div class="box_left">
+                              <p class="lorem_text" th:text="${intros.image_information}">Substance</p>
+                           </div>
+                           <div class="box_right">
+                                 <img  style="width: 700px;height: 300px" th:src="@{${intros.image_path_url}}"/>
+                           </div>
+                        </div>
+                     </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+      <!-- client section start -->
+      <!-- choose section start -->
+      <div class="choose_section layout_padding">
+         <div class="container">
+            <h1 class="choose_taital">WhyChooseUs</h1>
+            <p class="choose_text">Substance </p>
+            <div class="read_bt_1"><a href="#">LearnMore</a></div>
+            <div class="newsletter_box">
+               <h1 class="let_text">Let Start Talk with Us</h1>
+               <div class="getquote_bt"><a href="#">Get A Quote</a></div>
+            </div>
+         </div>
+      </div>
+
+      <div th:replace="common :: common_end"></div>
+
+      <div th:replace="common :: common_beinan"></div>
+
+      <div th:replace="common :: common_src"></div>
+
+   <script type="application/javascript">
+
+      //show_detailpage_gy
+      $(document).on("click",".aboutus",function () {
+         $.ajax({
+            url:"/show_detailpage_gy",
+            type:"post",
+            dataType:"json",
+            data:{
+               name:1
+            },
+            success:function (data) {
+               window.location.href = "/detailpages_services";
+            }
+         })
+      })
+
+   </script>
+   </body>
+</html>

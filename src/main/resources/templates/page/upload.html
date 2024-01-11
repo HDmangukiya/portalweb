@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ProductEditing</title>
+    <link rel="stylesheet" th:href="@{/layuimini/lib/layui-v2.5.5/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuimini/lib/jq-module/zyupload/zyupload-1.0.0.min.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuimini/css/public.css}" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+   <div class="layuimini-main">
+       <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">Title：</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" required  lay-verify="required" placeholder="PleaseEnterATitle" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">Type</label>
+            <div class="layui-input-block">
+                <input type="checkbox" value="1" name="product" title="Products" lay-skin="primary" checked>
+                <input type="checkbox" value="2" name="patents" title="Patent" lay-skin="primary">
+                <input type="checkbox" value="3" name="soultion" title="Solution" lay-skin="primary">
+                <input type="checkbox" value="4" name="case" title="Accomplishments" lay-skin="primary">
+
+            </div>
+        </div>
+           <div class="layui-form-item">
+               <label class="layui-form-label">UploadAnImage：</label>
+           <div class="layui-upload-drag" id="test10">
+               <i class="layui-icon"></i>
+               <p>ClickUploadPreview</p>
+               <div class="layui-hide" id="uploadDemoView">
+                   <hr>
+                   <img src="" alt="RenderedAfterTheUploadIsSuccessful" style="max-width: 196px">
+               </div>
+           </div>
+       </div>
+           <br/><br/>
+           <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">Introduction：</label>
+            <div class="layui-input-block">
+                <textarea name="desc" placeholder="PleaseEnterABriefDescriptionOfYourContent" class="layui-textarea"></textarea>
+            </div>
+        </div>
+           <div class="layui-form-item">
+               <label class="layui-form-label">ContentEditing：</label>
+               <div class="layui-input-block">
+                   <textarea id="edit" lay-verify="content0" style="display: none;"></textarea>
+               </div>
+           </div>
+
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="tijiao">SubmitNow</button>
+                <button type="reset" class="layui-btn layui-btn-primary" >Reset</button>
+            </div>
+       </form>
+   </div>
+</div>
+<script th:src="@{/layuimini/lib/jquery-3.4.1/jquery-3.4.1.min.js}" charset="utf-8"></script>
+<script th:src="@{/layuimini/lib/layui-v2.5.5/layui.js}" charset="utf-8"></script>
+<script th:src="@{/layuimini/lib/jq-module/zyupload/zyupload-1.0.0.min.js}" charset="utf-8"></script>
+<script type="text/javascript">
+    layui.use(['form', 'layedit','upload','jquery','layer'], function () {
+
+        var $=layui.jquery
+        var form=layui.form
+        var upload = layui.upload;
+        var layedit = layui.layedit;
+        var num=10
+        upload.render({
+            elem: '#test10'
+            ,url: '/upload_image' //ChangeToYourOwnUploadInterface
+            ,done: function(res){
+                $('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', '/layuimini/image_out/'+res.imagefile_path);
+            }
+        });
+
+        layedit.set({
+            uploadImage: {
+                url: '/article_image' //InterfaceURL
+                ,type: 'post' //DefaultPost
+            }
+        });
+        var index=layedit.build('edit'); //BuildAnEditor
+
+        form.verify({
+            content0:function (value) {
+                layedit.sync(index)
+            }
+
+        })
+
+
+
+
+
+        form.on("submit(tijiao)",function (datas) {
+            var text = layedit.getContent(index)
+            var src=$('#uploadDemoView').find("img").attr("src");
+
+            data=datas.field;
+            if(data.product==1){
+                $.ajax({
+                    url :"/content/product",
+                    type: "post",
+                    dataType:"json",
+                    data:{
+                        product_name: data.title,
+                        product_brief: data.desc,
+                        product_image: src,
+                        product_content: text
+
+                    },
+                    success :function (dat) {
+                    if( dat.statecode == 200 ){
+                        if(num==0){
+                        layer.msg('TheAdditionWasSuccessful', {
+                            icon: 1,
+                            time: 1000 //2 seconds off (If not configured, the default is 3 seconds.)）
+                        }, function(){
+                            history.go(0);
+                        })
+                        num=100;
+                    }}
+                    }
+                })
+            }
+
+           if(data.patents==2){
+               $.ajax({
+                   url :"/content/patents",
+                   type: "post",
+                   dataType:"json",
+                   data:{
+                       patents_name: data.title,
+                       patents_brief: data.desc,
+                       patents_image: src,
+                       patents_content: text
+                   },
+                   success:function (dat) {
+                       if(dat.statecode==200){
+                           if(num==0){
+                               layer.msg('TheAdditionWasSuccessful', {
+                                   icon: 1,
+                                   time: 1000 //2 seconds off (If not configured, the default is 3 seconds.)）
+                               }, function(){
+                                   history.go(0);
+                               })
+                               num=100;
+                           }
+
+                       }
+                   }})
+           }
+
+            if(data.soultion==3){
+                $.ajax({
+                    url :"/content/solution",
+                    type: "post",
+                    dataType:"json",
+                    data:{
+                        solution_name: data.title,
+                        solution_brief: data.desc,
+                        solution_image: src,
+                        solution_content: text},
+                    success:function (dat) {
+                        if(dat.statecode==200){
+                            if(num==0){
+                                layer.msg('TheAdditionWasSuccessful', {
+                                    icon: 1,
+                                    time: 1000 //2 seconds off (If not configured, the default is 3 seconds.)）
+                                }, function(){
+
+                                    history.go(0);
+                                })
+                                num=100;
+                            }
+
+                        }
+                    }})
+            }
+
+
+            if(data.case==4){
+                $.ajax({
+                    url :"/content/case",
+                    type: "post",
+                    dataType:"json",
+                    data:{
+                        case_name: data.title,
+                        case_brief: data.desc,
+                        case_image: src,
+                        case_content: text
+                    },
+                    success:function (dat) {
+                        if(dat.statecode==200){
+                            if(num==0){
+                                layer.msg('TheAdditionWasSuccessful', {
+                                    icon: 1,
+                                    time: 1000 //2 seconds off (If not configured, the default is 3 seconds.)）
+                                }, function(){
+
+                                    history.go(0);
+                                })
+                                num=100;
+                            }
+                        }
+                    }})
+            }
+
+        })
+    });
+</script>
+</body>
+</html>

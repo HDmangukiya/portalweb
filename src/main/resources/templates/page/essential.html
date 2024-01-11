@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>ChangeYourPassword</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layuimini/lib/layui-v2.5.5/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuimini/css/public.css}" media="all">
+        <style>
+         .layui-form-item .layui-input-company {width: auto;padding-right: 10px;line-height: 38px;}
+        .box{
+
+            border: 2px  ;
+            /* TurnAnElementIntoAPositioningElement */
+            position: absolute;
+            /* ElementDistanceTheLeftIs50% */
+            left: 50%;
+            top: 50%;
+            /* Let the left margin of the element be 1/2 of the width and height of the element*/
+            margin-top: -150px;
+            margin-left: -200px;
+        }
+
+        </style>
+</head>
+
+<body>
+<div style="display: none">
+    <span id="wql" th:text="${session.username}"></span>
+</div>
+<div class="layuimini-main" id="mydiv" style="display: none">
+    <form class="layui-form" lay-filter="my_filter"> <!-- Hint: If you don't want to use form, you can swap it out for any normal element like div -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">OriginalUsername：</label>
+            <div class="layui-input-block">
+                <input type="text" name="username_old" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">NewUsername：</label>
+            <div class="layui-input-block">
+                <input type="text" name="username_new" placeholder="请输入新用户名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">AdminNotes</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" name="acse" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="filter">SubmitNow</button>
+                <button type="reset" class="layui-btn layui-btn-primary">Reset</button>
+            </div>
+        </div>
+        <!-- For more form structure layout, please refer to [Page Elements - Forms] on the left side of the document -->
+    </form>
+</div>
+<div class="layuimini-container">
+    <div class="layuimini-main box">
+        <div class="layui-row">
+
+            <span style="font-size:15px;font-weight:bold">Username:&nbsp;&nbsp;&nbsp;<span th:text="${session.username}"></span> </span>
+            &nbsp;&nbsp;
+            <button id="but" class="layui-btn layui-btn-sm">ChangeYourAccountName</button>
+            <br/>
+
+        </div>
+        <br/><br/>
+        <div class="layui-row">
+            <span style="font-size:15px;font-weight:bold">Password:&nbsp;&nbsp; &nbsp;<span th:text="${session.password}"></span></span>
+            &nbsp;&nbsp;
+
+            <br/>
+        </div>
+        <br/><br/>
+        <div class="layui-row">
+            <span style="font-size:15px;font-weight:bold">Remark:&nbsp;&nbsp; <span th:text="${session.remark}"></span>&nbsp;</span>
+
+            <br/>
+        </div>
+
+    </div>
+</div>
+<script th:src="@{/layuimini/lib/layui-v2.5.5/layui.js}" charset="utf-8"></script>
+<script th:src="@{/layuimini/js/lay-config.js}" charset="utf-8"></script>
+<script>
+    layui.use(['form','miniTab'], function () {
+        var $=layui.jquery;
+        var form = layui.form;
+        var names=$("#wql").text()
+
+        $("#but").click(function () {
+            layer.open({
+                type: 1,
+                content: $("#mydiv"),
+                area:["600px","350px"],
+                skin:"layui-layer-molv"
+            });
+        })
+
+        form.val("my_filter", { //formTest Namely class="layui-form" The attribute of the element in which it is located lay-filter="" TheCorrespondingValue
+            "username_old":names
+        })
+        form.on('submit(filter)', function(data){
+            datasd=data.field;
+            $.ajax({
+                url:"/user_username",
+                type:"post",
+                dataType:"json",
+                data:{
+                    username_old: datasd.username_old,
+                    username_new: datasd.username_new,
+                    remark: datasd.acse
+                },
+                success:function (datas) {
+                    if(datas.statecode==200){
+                        layer.msg("TheChangeWasSuccessful！",{icon:1,time:1500})
+                        window.location.reload()
+                    }else {
+
+                        layer.msg("TheOriginalUsernameDoesNotExist",{icon:2,time:1500})
+                    }
+                }
+
+
+            })
+            return false;
+        })
+    });
+</script>
+</body>
+</html>

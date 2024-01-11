@@ -1,0 +1,95 @@
+{
+  "homeInfo": {
+    "title": "Home",
+    "href": ""
+  },
+  "logoInfo": {
+    "title": "Visionary",
+    "image": "/layuimini/images/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "ComponentManagement",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "HomePageSettings",
+          "href": "",
+          "icon": "fa fa-home",
+          "target": "_self"
+        },
+        {
+          "title": "MediaSettings",
+          "href": "",
+          "icon": "fa fa-window-maximize",
+          "target": "_self",
+          "child": [{
+            "title": "PhotoGallery",
+            "href": "/image_databse",
+            "icon": "fa fa-list-alt",
+            "target": "_self"
+          },
+            {
+              "title": "LayoutChanges",
+              "href": "/slideshow",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+
+          }]
+        },    {
+          "title": "ContentInformation",
+          "href": "",
+          "icon": "fa fa-calendar",
+          "target": "_self",
+          "child": [{
+            "title": "ProductInformation",
+            "href": "/product/product_table",
+            "icon": "fa fa-list-alt",
+            "target": "_self"
+          },
+            {
+              "title": "PatentInformation",
+              "href": "/patents/patents_table",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "Solution",
+              "href": "/solution/solution_table",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "Accomplishments",
+              "href": "/case/case_table",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            }
+          ]
+        },  {
+          "title": "AdminAdded",
+          "href": "/add_admin",
+          "icon": "fa fa-navicon",
+          "target": "_self"
+        },
+
+        {
+          "title": "ProductEditing",
+          "href": "/upload",
+          "icon": "fa fa-edit",
+          "target": "_self"
+        },    {
+          "title": "CompanyInformation",
+          "href": "/company",
+          "icon": "fa fa-snowflake-o",
+          "target": "_self"
+        }
+      ]
+    }
+
+
+  ]
+}
